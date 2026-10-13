@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Northstar Supply — considered objects for modern work and life.">
+  <title>Northstar Supply</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#store" aria-label="Northstar Supply home">
+      <span class="brand-mark">N</span>
+      <span>NORTHSTAR <small>SUPPLY</small></span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#store" data-route="store" class="active">Shop</a>
+      <a href="#orders" data-route="orders">Orders</a>
+      <a href="#operations" data-route="operations">Operations</a>
+    </nav>
+    <button class="cart-button" id="cartButton" aria-label="Open shopping cart">
+      Bag <span id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section id="storeView" class="view active">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Edition 01 · Everyday instruments</p>
+          <h1>Objects that make<br><em>good work</em> feel natural.</h1>
+          <p class="hero-sub">A tight edit of tactile tools for desks, journeys, and the spaces between.</p>
+          <a href="#collection" class="primary-link">Explore the collection <span>↘</span></a>
+        </div>
+        <div class="hero-art" aria-label="Featured abstract product composition">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="product-sculpture">
+            <span class="sculpture-line"></span>
+            <span class="sculpture-glow"></span>
+          </div>
+          <div class="hero-caption"><span>01</span><p>Built for focus.<br>Made to last.</p></div>
+        </div>
+      </div>
+
+      <section class="collection" id="collection">
+        <div class="section-heading">
+          <div><p class="eyebrow">The collection</p><h2>Useful, by design.</h2></div>
+          <div class="filters" id="filters" aria-label="Product filters"></div>
+        </div>
+        <div class="product-grid" id="productGrid" aria-live="polite">
+          <div class="loading-card"></div><div class="loading-card"></div><div class="loading-card"></div>
+        </div>
+      </section>
+
+      <section class="principles">
+        <p class="eyebrow">Our point of view</p>
+        <div class="principle-grid">
+          <h2>Buy fewer things.<br>Choose the right ones.</h2>
+          <div><span>01</span><h3>Considered</h3><p>Every object earns its place through daily usefulness.</p></div>
+          <div><span>02</span><h3>Enduring</h3><p>Honest materials and forms that outlive the moment.</p></div>
+          <div><span>03</span><h3>Human</h3><p>Tools should feel intuitive from the very first touch.</p></div>
+        </div>
+      </section>
+    </section>
+
+    <section id="ordersView" class="view dashboard-view">
+      <div class="page-intro"><p class="eyebrow">Order journal</p><h1>Track every order,<br><em>as it happens.</em></h1><p>Events move from inventory to payment in seconds. This page refreshes automatically.</p></div>
+      <div class="metric-grid" id="orderMetrics"></div>
+      <div class="panel">
+        <div class="panel-header"><div><p class="eyebrow">Recent activity</p><h2>Orders</h2></div><button class="quiet-button" id="refreshOrders">Refresh</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Placed</th><th>Total</th><th>Status</th><th></th></tr></thead><tbody id="ordersTable"></tbody></table></div>
+        <div class="empty-state hidden" id="ordersEmpty"><span>◎</span><h3>No orders yet</h3><p>Your first checkout will appear here.</p><a href="#store">Browse the collection</a></div>
+      </div>
+    </section>
+
+    <section id="operationsView" class="view dashboard-view">
+      <div class="page-intro compact"><p class="eyebrow">Control room</p><h1>The pulse of<br><em>commerce.</em></h1><p>Inventory, reservations, and payments in one operational view.</p></div>
+      <div class="service-strip">
+        <div><i class="pulse"></i><span>Order service</span><strong>Online</strong></div>
+        <div><i class="pulse"></i><span>Inventory service</span><strong>Online</strong></div>
+        <div><i class="pulse"></i><span>Payment service</span><strong>Online</strong></div>
+        <div><i class="pulse amber"></i><span>Kafka topics</span><strong>4 active</strong></div>
+      </div>
+      <div class="ops-grid">
+        <div class="panel inventory-panel"><div class="panel-header"><div><p class="eyebrow">Stock position</p><h2>Inventory</h2></div><span class="live-label">Live</span></div><div id="inventoryList"></div></div>
+        <div class="panel payments-panel"><div class="panel-header"><div><p class="eyebrow">Latest captures</p><h2>Payments</h2></div></div><div id="paymentsList"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="drawer-head"><p class="eyebrow">Your selection</p><button id="closeCart" aria-label="Close cart">×</button></div>
+    <h2>Shopping bag <span id="drawerCount">0</span></h2>
+    <div id="cartItems" class="cart-items"></div>
+    <div id="cartEmpty" class="cart-empty"><span>○</span><p>Your bag is waiting.</p><small>Thoughtful objects, ready when you are.</small></div>
+    <div class="cart-footer">
+      <div><span>Subtotal</span><strong id="cartTotal">$0.00</strong></div>
+      <button class="checkout-button" id="checkoutButton">Continue to checkout <span>→</span></button>
+      <p>Complimentary delivery on orders over $150</p>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <dialog id="checkoutDialog" class="checkout-dialog">
+    <button class="dialog-close" id="closeCheckout" aria-label="Close checkout">×</button>
+    <div id="checkoutFormView">
+      <p class="eyebrow">Almost yours</p><h2>Where should we<br>send your order?</h2>
+      <form id="checkoutForm">
+        <label>Email address<input type="email" id="customerEmail" required placeholder="you@example.com"></label>
+        <div class="checkout-note"><span>Secure checkout</span><small>Payment is simulated for this demonstration.</small></div>
+        <div class="checkout-total"><span>Total</span><strong id="checkoutTotal">$0.00</strong></div>
+        <button type="submit" class="checkout-button">Place order <span>→</span></button>
+      </form>
+    </div>
+    <div id="checkoutSuccess" class="checkout-success hidden"><span class="success-mark">✓</span><p class="eyebrow">Order received</p><h2>It’s in motion.</h2><p>Your order is moving through inventory and payment now.</p><a href="#orders" id="trackOrder">Track your order →</a></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <footer><div class="brand"><span class="brand-mark">N</span><span>NORTHSTAR <small>SUPPLY</small></span></div><p>Considered objects for modern work and life.</p><span>© 2026 Northstar Supply</span></footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>
+
